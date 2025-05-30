@@ -4,12 +4,12 @@
 # VPC Information
 output "vpc_id" {
   description = "ID of the VPC"
-  value       = aws_vpc.this.id
+  value       = aws_vpc.main.id
 }
 
 output "vpc_cidr" {
   description = "CIDR block of the VPC"
-  value       = aws_vpc.this.cidr_block
+  value       = aws_vpc.main.cidr_block
 }
 
 # Subnet Information
@@ -37,12 +37,12 @@ output "first_private_subnet_id" {
 # Gateway Information
 output "internet_gateway_id" {
   description = "ID of the Internet Gateway"
-  value       = aws_internet_gateway.this.id
+  value       = aws_internet_gateway.main.id
 }
 
 output "nat_gateway_id" {
   description = "ID of the NAT Gateway (if enabled)"
-  value       = var.enable_nat_gateway ? aws_nat_gateway.this[0].id : null
+  value       = var.enable_nat_gateway ? aws_nat_gateway.main[0].id : null
 }
 
 output "nat_gateway_public_ip" {
@@ -71,8 +71,8 @@ output "availability_zones" {
 output "vpc_summary" {
   description = "Summary of the VPC configuration"
   value = {
-    vpc_id               = aws_vpc.this.id
-    vpc_cidr            = aws_vpc.this.cidr_block
+    vpc_id               = aws_vpc.main.id
+    vpc_cidr            = aws_vpc.main.cidr_block
     public_subnet_count = length(aws_subnet.public)
     private_subnet_count = length(aws_subnet.private)
     nat_gateway_enabled = var.enable_nat_gateway
