@@ -52,3 +52,25 @@ module "iam" {
   # Optional: Enable SSM
   enable_ssm_access = true
 }
+
+# Compute Module
+module "compute" {
+  source = "../../modules/compute"
+  
+  name_prefix = local.name_prefix
+  common_tags = local.common_tags
+  
+  # Network configuration
+  public_subnet_id  = module.vpc.first_public_subnet_id
+  private_subnet_id = module.vpc.first_private_subnet_id
+  
+  # Security configuration
+  bastion_security_group_id    = module.security.bastion_security_group_id
+  monitoring_security_group_id = module.security.monitoring_security_group_id
+  
+  # IAM configuration
+  instance_profile_name = module.iam.ec2_instance_profile_name
+  
+  # SSH access - use your existing public key
+  public_key = file("~/.ssh/id_rsa.pub")  # or your key path
+}
