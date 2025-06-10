@@ -41,3 +41,22 @@ module "security" {
   allowed_ssh_cidrs = [local.my_ip_cidr]
   common_tags       = local.common_tags
 }
+
+# IAM Module
+module "iam" {
+  source = "../../modules/iam"
+
+  name_prefix = local.name_prefix
+  common_tags = local.common_tags
+
+  # Optional: Enable SSM
+  enable_ssm_access = true
+}
+
+output "iam_role_name" {
+  value = module.iam.ec2_role_name
+}
+
+output "instance_profile_name" {
+  value = module.iam.ec2_instance_profile_name
+}
