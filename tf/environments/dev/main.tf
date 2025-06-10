@@ -52,11 +52,3 @@ module "iam" {
   # Optional: Enable SSM
   enable_ssm_access = true
 }
-
-output "iam_role_name" {
-  value = module.iam.ec2_role_name
-}
-
-output "instance_profile_name" {
-  value = module.iam.ec2_instance_profile_name
-}
