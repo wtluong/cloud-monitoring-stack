@@ -6,4 +6,4 @@ yum update -y
 yum install -y wget curl
 
 # Set hostname  
-hostnamectl set-hostname monitoring
+hostnamectl set-hostname monitoring-host
