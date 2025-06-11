@@ -6,4 +6,4 @@ yum update -y
 yum install -y htop tmux git
 
 # Set hostname
-hostnamectl set-hostname bastion
+hostnamectl set-hostname bastion-host
