@@ -30,6 +30,7 @@ module "vpc" {
   
   name_prefix = local.name_prefix
   common_tags = local.common_tags
+  enable_nat_gateway = true # required for monitoring instance to reach internet & download packages
 }
 
 # Security Module
